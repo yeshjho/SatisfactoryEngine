@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SatisfactoryEngine", "SatisfactoryEngine\SatisfactoryEngine.vcxproj", "{FE932765-5F54-4F49-A30A-F0B310E8527C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE932765-5F54-4F49-A30A-F0B310E8527C}.Debug|x64.ActiveCfg = Debug|x64
+		{FE932765-5F54-4F49-A30A-F0B310E8527C}.Debug|x64.Build.0 = Debug|x64
+		{FE932765-5F54-4F49-A30A-F0B310E8527C}.Release|x64.ActiveCfg = Release|x64
+		{FE932765-5F54-4F49-A30A-F0B310E8527C}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1FCA23A6-B755-4206-BD02-A1A5AC8B0120}
+	EndGlobalSection
+EndGlobal
