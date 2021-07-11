@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml" />
+	<AvailableItemName Include="SatisfactoryEngineCompile">
+        <Targets>__SatisfactoryEngineCompile</Targets>
+	</AvailableItemName>
+  </ItemGroup>
+  
+  <UsingTask TaskName="SatisfactoryEngineCompile" TaskFactory="XamlTaskFactory" AssemblyName="Microsoft.Build.Tasks.v4.0">
+	<Task>$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml</Task>
+  </UsingTask>
+  
+  
+    <Target Name="__SatisfactoryEngineCompile" BeforeTargets="PreBuildEvent">
+	
+    <ItemGroup>
+        <_SECompileMetadataSet Include="@(SatisfactoryEngineCompile)">
+            <Message>Processing %(Identity)</Message>
+            <Outputs>$(ProjectDir)intermediate\%(Identity)</Outputs>
+            <Command>python C:\Users\yeshj\Desktop\script.py "%(FullPath)" "$(ProjectDir)intermediate\%(Identity)"</Command>
+            <LinkObjects>false</LinkObjects>
+        </_SECompileMetadataSet>
+    </ItemGroup>
+	
+    <!-- delete old ParallelSECompile tlogs-->
+    <GetOutOfDateItems
+      Sources                   ="@(_EmptyItemGroup)"
+      OutputsMetadataName       ="Outputs"
+      DependenciesMetadataName  ="AdditionalInputs"
+      CommandMetadataName       ="Command"
+      TLogDirectory             ="$(TLogLocation)"
+      TLogNamePrefix            ="ParallelSECompile"
+      />
+
+    <!-- Get out of date items (will create tlogs for all SECompile items) -->
+    <GetOutOfDateItems
+      Condition                 ="'$(SelectedFiles)' == ''"
+      Sources                   ="@(_SECompileMetadataSet)"
+      OutputsMetadataName       ="Outputs"
+      DependenciesMetadataName  ="AdditionalInputs"
+      CommandMetadataName       ="Command"
+      TLogDirectory             ="$(TLogLocation)"
+      TLogNamePrefix            ="SECompile"
+      CheckForInterdependencies ="true"
+      >
+      <Output TaskParameter="OutOfDateSources" ItemName="_SECompile"/>
+    </GetOutOfDateItems>
+
+    <ItemGroup Condition ="'$(SelectedFiles)' != ''">
+      <_SECompile Include="@(_SECompileMetadataSet)" />
+    </ItemGroup>
+	
+	<ItemGroup Condition="'@(_SECompile)' != ''">
+		<ClCompile Include="%(_SECompile.Outputs)" Condition="'%(_SECompileMetadataSet.ExcludedFromBuild)' != 'true'" />
+	</ItemGroup>
+
+    <!-- Buidl items which can be built in parallel (ignored for selected files build)-->
+    <ItemGroup Condition="'$(SelectedFiles)' == ''">
+      <_ParallelSECompile Include="@(_SECompile)" />
+    </ItemGroup>
+
+    <ParallelCustomBuild
+      Condition       ="'@(_ParallelSECompile)' != ''"
+      Sources         ="@(_ParallelSECompile)"
+      MaxProcesses    ="0"
+      MaxItemsInBatch ="0"
+      AcceptableNonZeroExitCodes  =""
+    />
+
+    <!-- build the remaining items -->
+    <ItemGroup Condition="'@(_ParallelSECompile)' != ''">
+      <_SECompile Remove="@(_ParallelSECompile)" />
+      <_ParallelSECompile Remove="@(_ParallelSECompile)" />
+    </ItemGroup>
+
+    <CustomBuild Condition ="'@(_SECompile)' != ''"
+      Sources                     ="@(_SECompile)"
+      BuildSuffix                 ="$(_BuildSuffix)"
+
+      MinimalRebuildFromTracking  ="false"
+      AcceptableNonZeroExitCodes  =""
+    />
+
+    <ItemGroup Condition="'@(_SECompile)' != ''">
+      <_SECompile Remove="@(_SECompile)" />
+    </ItemGroup>
+	
+  </Target>
+  
+</Project>
