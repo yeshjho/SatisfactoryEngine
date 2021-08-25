@@ -4,16 +4,18 @@
 
 
 
+namespace stf
+{
 #ifdef _DEBUG
-class [[nodiscard]] HashedString
+class [[nodiscard]] HashedString final
 {
 public:
 	HashedString(xxhash::hash<64>::hash_type hash, std::string originalString);
 
 	constexpr operator xxhash::hash<64>::hash_type() const noexcept { return mHash; }
 
-	[[nodiscard]] constexpr const std::string& GetOriginalString() const noexcept { return mOriginalString; }
-
+	[[nodiscard]] constexpr const std::string& GetDebugOnlyString() const noexcept { return mOriginalString; }
+	[[nodiscard]] static constexpr const std::map<xxhash::hash<64>::hash_type, std::string>& GetDebugOnlyStrings() noexcept { return originalStrings; }
 
 private:
 	inline static std::map<xxhash::hash<64>::hash_type, std::string> originalStrings;
@@ -37,3 +39,4 @@ constexpr HashedString operator""_hs(const char* str, const std::size_t len) noe
 	return xxhash::xxh64(str, len, XXHASH_CX_XXH64_SEED);
 }
 #endif
+}

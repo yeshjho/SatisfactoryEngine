@@ -2,6 +2,8 @@
 
 
 
+namespace stf
+{
 #ifdef _DEBUG
 HashedString::HashedString(const xxhash::hash<64>::hash_type hash, std::string originalString)
 	: mHash(hash), mOriginalString(std::move(originalString))
@@ -21,3 +23,4 @@ HashedString operator ""_hs(const char* const str, const std::size_t len) noexce
 	return HashedString{ xxhash::xxh64(str, len, XXHASH_CX_XXH64_SEED), str };
 }
 #endif
+}

@@ -13,11 +13,13 @@
   <ItemGroup>
     <ClCompile Include="engine\core\HashedString.cpp" />
     <ClCompile Include="engine\core\LocalStorage.cpp" />
+    <ClCompile Include="engine\util\Serializer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\core\HashedString.hpp" />
     <ClInclude Include="engine\core\LocalStorage.hpp" />
     <ClInclude Include="engine\core\OSDetection.hpp" />
+    <ClInclude Include="engine\util\Serializer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -66,8 +68,9 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)external\include</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -85,7 +88,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)external\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
