@@ -13,13 +13,15 @@
   <ItemGroup>
     <ClCompile Include="engine\core\HashedString.cpp" />
     <ClCompile Include="engine\core\LocalStorage.cpp" />
-    <ClCompile Include="engine\util\Serializer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\core\HashedString.hpp" />
     <ClInclude Include="engine\core\LocalStorage.hpp" />
     <ClInclude Include="engine\core\OSDetection.hpp" />
     <ClInclude Include="engine\util\Serializer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="engine\util\Serializer.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -90,6 +92,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)external\include</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -101,5 +104,8 @@
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(SolutionDir)SatisfactoryEngineBuildTarget\SatisfactoryEngineCompile.targets" />
   </ImportGroup>
 </Project>

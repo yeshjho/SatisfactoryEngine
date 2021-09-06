@@ -12,7 +12,7 @@ class [[nodiscard]] HashedString final
 public:
 	HashedString(xxhash::hash<64>::hash_type hash, std::string originalString);
 
-	constexpr operator xxhash::hash<64>::hash_type() const noexcept { return mHash; }
+	[[nodiscard]] constexpr operator xxhash::hash<64>::hash_type() const noexcept { return mHash; }
 
 	[[nodiscard]] constexpr const std::string& GetDebugOnlyString() const noexcept { return mOriginalString; }
 	[[nodiscard]] static constexpr const std::map<xxhash::hash<64>::hash_type, std::string>& GetDebugOnlyStrings() noexcept { return originalStrings; }
