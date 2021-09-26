@@ -13,14 +13,29 @@
   <ItemGroup>
     <ClCompile Include="engine\core\HashedString.cpp" />
     <ClCompile Include="engine\core\LocalStorage.cpp" />
+    <ClCompile Include="engine\core\memory\MemoryManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\core\HashedString.hpp" />
     <ClInclude Include="engine\core\LocalStorage.hpp" />
+    <ClInclude Include="engine\core\memory\container\ContainerMemoryAllocator.h" />
+    <ClInclude Include="engine\core\memory\container\Deque.h" />
+    <ClInclude Include="engine\core\memory\container\ForwardList.h" />
+    <ClInclude Include="engine\core\memory\container\List.h" />
+    <ClInclude Include="engine\core\memory\container\Map.h" />
+    <ClInclude Include="engine\core\memory\container\Queue.h" />
+    <ClInclude Include="engine\core\memory\container\Set.h" />
+    <ClInclude Include="engine\core\memory\container\Stack.h" />
+    <ClInclude Include="engine\core\memory\container\UnorderedMap.h" />
+    <ClInclude Include="engine\core\memory\container\UnorderedSet.h" />
+    <ClInclude Include="engine\core\memory\container\Vector.h" />
+    <ClInclude Include="engine\core\memory\MemoryManager.h" />
     <ClInclude Include="engine\core\OSDetection.hpp" />
     <ClInclude Include="engine\util\Serializer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="engine\core\memory\container\ContainerMemoryAllocator.inl" />
+    <None Include="engine\core\memory\MemoryManager.inl" />
     <None Include="engine\util\Serializer.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
